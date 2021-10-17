@@ -1,30 +1,54 @@
-﻿using System;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="TestSingleton.cs" company="DIIAGE">
+//     Copyright (c) Virot Valentin. All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------
 namespace Singleton.ClassLibrary
 {
+    /// <summary>
+    /// Defines the <see cref="TestSingleton" />.
+    /// </summary>
     public class TestSingleton
     {
-        private TestSingleton() { }
+        /// <summary>
+        /// Defines the lock object, to see if a thread is already using this instance.
+        /// </summary>
+        private static readonly object Lock = new object();
 
-        private static TestSingleton _instance;
+        /// <summary>
+        /// Defines the singleton instance.
+        /// </summary>
+        private static TestSingleton instance;
 
-        private static readonly object _lock = new object();
+        /// <summary>
+        /// Prevents a default instance of the <see cref="TestSingleton"/> class from being created.
+        /// </summary>
+        private TestSingleton()
+        {
+        }
 
+        /// <summary>
+        /// Gets singleton instance.
+        /// </summary>
+        /// <returns>The <see cref="TestSingleton"/>.</returns>
         public static TestSingleton GetInstance()
         {
-            if(_instance == null)
+            // If the instance doesn't exists
+            if (instance == null)
             {
-                lock(_lock)
+                // If the instance is locked by a thread
+                lock (Lock)
                 {
-                    if(_instance == null)
+                    // If the instance doesn't exists
+                    if (instance == null)
                     {
-                        _instance = new TestSingleton();
+                        // Creating instance
+                        instance = new TestSingleton();
                     }
                 }
             }
 
-            return _instance;
+            return instance;
         }
     }
 }
-
