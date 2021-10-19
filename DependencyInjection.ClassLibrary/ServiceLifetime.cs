@@ -18,6 +18,11 @@ namespace DependencyInjection.ClassLibrary
         /// <summary>
         /// Defines the Transient.
         /// </summary>
-        Transient
+        Transient,
+
+        /// <summary>
+        /// Defines the Scoped.
+        /// </summary>
+        Scoped
     }
 }

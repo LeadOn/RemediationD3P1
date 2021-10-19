@@ -5,6 +5,7 @@
 //-----------------------------------------------------------------------
 namespace DependencyInjection.ClassLibrary
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -59,20 +60,20 @@ namespace DependencyInjection.ClassLibrary
         /// Register a transient.
         /// </summary>
         /// <typeparam name="TService">Service to instantiate.</typeparam>
-        /// <param name="implementation">Service implementation<see cref="TService"/>.</param>
-        public void RegisterTransient<TService>(TService implementation)
-        {
-            this.serviceDescriptors.Add(new ServiceDescriptor(implementation, ServiceLifetime.Singleton));
-        }
-
-        /// <summary>
-        /// Register a transient.
-        /// </summary>
-        /// <typeparam name="TService">Service to instantiate.</typeparam>
         /// <typeparam name="TImplementation">Service implementation.</typeparam>
         public void RegisterTransient<TService, TImplementation>()
         {
             this.serviceDescriptors.Add(new ServiceDescriptor(typeof(TService), typeof(TImplementation), ServiceLifetime.Transient));
+        }
+
+        /// <summary>
+        /// Register a scoped.
+        /// </summary>
+        /// <typeparam name="TService">Service to instantiate.</typeparam>
+        /// <typeparam name="TImplementation">Service implementation.</typeparam>
+        public void RegisterScoped<TService, TImplementation>() where TImplementation : TService, IDisposable
+        {
+            this.serviceDescriptors.Add(new ServiceDescriptor(typeof(TService), typeof(TImplementation), ServiceLifetime.Scoped));
         }
 
         /// <summary>
