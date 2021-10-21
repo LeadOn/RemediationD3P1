@@ -71,7 +71,7 @@ namespace DependencyInjection.ClassLibrary
         /// </summary>
         /// <typeparam name="TService">Service to instantiate.</typeparam>
         /// <typeparam name="TImplementation">Service implementation.</typeparam>
-        public void RegisterScoped<TService, TImplementation>() where TImplementation : TService, IDisposable
+        public void RegisterScoped<TService, TImplementation>() where TImplementation : TService
         {
             this.serviceDescriptors.Add(new ServiceDescriptor(typeof(TService), typeof(TImplementation), ServiceLifetime.Scoped));
         }

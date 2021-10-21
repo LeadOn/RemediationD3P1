@@ -67,5 +67,10 @@ namespace DependencyInjection.ClassLibrary
         /// Gets the Lifetime.
         /// </summary>
         public ServiceLifetime Lifetime { get; }
+
+        /// <summary>
+        /// Gets or sets the Scope
+        /// </summary>
+        public string Scope { get; set; }
     }
 }

@@ -6,6 +6,7 @@
 namespace DependencyInjection.UnitTests.Implementations
 {
     using System;
+    using DependencyInjection.ClassLibrary;
     using DependencyInjection.UnitTests.Interfaces;
 
     /// <summary>
